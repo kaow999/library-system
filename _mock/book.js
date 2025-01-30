@@ -1,0 +1,58 @@
+const books = [
+  {
+    id: 1,
+    title: "Harry Potter and the Sorcerer's Stone",
+    author: "J.K. Rowling",
+    type: "Fantasy",
+    publicationYear: 1997,
+    remaining: 0,
+    isAvailable: false,
+  },
+  {
+    id: 2,
+    title: "The Lord of the Rings",
+    author: "J.R.R. Tolkien",
+    type: "Fantasy",
+    publicationYear: 1954,
+    remaining: 2,
+    isAvailable: true,
+  },
+  {
+    id: 3,
+    title: "The Hobbit",
+    author: "J.R.R. Tolkien",
+    type: "Fantasy",
+    publicationYear: 1937,
+    remaining: 0,
+    isAvailable: false,
+  },
+  {
+    id: 4,
+    title: "The Hitchhiker's Guide to the Galaxy",
+    author: "Douglas Adams",
+    type: "Science Fiction",
+    publicationYear: 1979,
+    remaining: 1,
+    isAvailable: true,
+  },
+  {
+    id: 5,
+    title: "Pride and Prejudice",
+    author: "Jane Austen",
+    type: "Romance",
+    publicationYear: 1813,
+    remaining: 0,
+    isAvailable: false,
+  },
+  {
+    id: 6,
+    title: "1984",
+    author: "George Orwell",
+    type: "Dystopian",
+    publicationYear: 1949,
+    remaining: 1,
+    isAvailable: true,
+  },
+];
+
+module.exports = books;
