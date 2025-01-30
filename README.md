@@ -38,98 +38,134 @@ GET /books/search
 
 This API provides endpoints to manage books in a library system. Users can retrieve, add, update, delete, and search for books.
 
-# Endpoints
+## Endpoints
 
-# GET /
+### Books
 
-Description:
+#### Get All Books
 
-Retrieves all books from the library system.
+```
+GET /books
+```
 
-Response:
+Retrieve a list of all books in the library.
 
-200 OK: Returns an array of all books.
+**Response:**
 
-# POST /add
+```json
+[
+  {
+    "id": "1",
+    "title": "Book Title",
+    "author": "Author Name",
+    "isbn": "1234567890",
+    "publishedDate": "2023-01-01"
+  }
+]
+```
 
-Description:
+#### Get Book by ID
 
-Creates a new book in the library system.
+```
+GET /books/{id}
+```
 
-Request Body:
+Retrieve details of a specific book by its ID.
 
-title (String, optional) - Title of the book (default: "No Title").
+**Response:**
 
-author (String, optional) - Author of the book (default: "No Author").
+```json
+{
+  "id": "1",
+  "title": "Book Title",
+  "author": "Author Name",
+  "isbn": "1234567890",
+  "publishedDate": "2023-01-01"
+}
+```
 
-type (String, optional) - Type of the book (default: "No Type").
+#### Add a New Book
 
-publicationYear (Number, optional) - Year of publication (default: 0).
+```
+POST /books
+```
 
-Response:
+Add a new book to the library.
 
-201 Created: Returns the created book object.
+**Request Body:**
 
-# PUT /:id
+```json
+{
+  "title": "New Book Title",
+  "author": "New Author Name",
+  "isbn": "0987654321",
+  "publishedDate": "2023-02-01"
+}
+```
 
-Description:
+#### Delete Book
 
-Updates an existing book in the library system.
+```
+DELETE /books/{id}
+```
 
-Request Parameters:
+Delete a book from the library by its ID.
 
-id (Number) - The ID of the book to update.
+**Response:**
 
-Request Body:
+```json
+{
+  "message": "Book successfully deleted"
+}
+```
 
-title (String, optional) - New title.
+#### Search Books
 
-author (String, optional) - New author.
+```
+GET /books/search
+```
 
-type (String, optional) - New type.
+Search for books in the library based on given criteria.
 
-publicationYear (Number, optional) - New publication year.
+**Query Parameters:**
 
-Response:
+- `title` (String, optional): Search term for the book title.
+- `author` (String, optional): Search term for the author's name.
+- `isbn` (String, optional): Search term for the book's ISBN.
+- `publishedDate` (String, optional): Search term for the book's publication date.
 
-200 OK: Returns the updated book object.
+**Response:**
 
-404 Not Found: If the book is not found.
+```json
+[
+  {
+    "id": "1",
+    "title": "Book Title",
+    "author": "Author Name",
+    "isbn": "1234567890",
+    "publishedDate": "2023-01-01"
+  }
+]
+```
 
-# DELETE /:id
+## Authentication
 
-Description:
+All endpoints require authentication via an API key. Include the API key in the request header:
 
-Deletes a book from the library system.
+```
+Authorization: YOUR_API_KEY
+```
 
-Request Parameters:
+## Error Handling
 
-id (Number) - The ID of the book to delete.
+The API uses standard HTTP status codes to indicate the success or failure of a request. Common status codes include:
 
-Response:
-
-200 OK: Returns the deleted book object.
-
-404 Not Found: If the book is not found.
-
-# GET /search
-
-Description:
-
-Searches for books in the library system based on given criteria.
-
-Query Parameters:
-
-title (String, optional) - Search term for title.
-
-type (String, optional) - Search term for type.
-
-publicationYear (Number, optional) - Minimum publication year.
-
-Response:
-
-200 OK: Returns an array of matching books.
-
+- `200 OK`: The request was successful.
+- `201 Created`: A new resource was successfully created.
+- `400 Bad Request`: The request was invalid or cannot be served.
+- `401 Unauthorized`: Authentication failed or user does not have permissions.
+- `404 Not Found`: The requested resource could not be found.
+- `500 Internal Server Error`: An error occurred on the server.
 
 # EXAMPLE
 
@@ -144,6 +180,5 @@ curl --location 'http://localhost:3000/books/add' \
 --header 'Authorization: TOKEN' \
 --header 'Content-Type: application/json' \
 --data '{
-    "title": "Js 101"
+"title": "Js 101"
 }'
-
